@@ -39,7 +39,7 @@ services:
       test: ["CMD", "curl", "-f", "http://subquery-node:3000/ready"]
       interval: 3s
       timeout: 5s
-      retries: 10
+      retries: 1
 
   graphql-engine:
     image: onfinality/subql-query:latest

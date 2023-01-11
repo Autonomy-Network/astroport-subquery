@@ -1,6 +1,6 @@
-import { Request, Account } from "../types";
-import { TerraEvent } from "@subql/types-terra";
-import { MsgExecuteContract } from "@terra-money/terra.js";
+import { Request, Account } from '../types';
+import { TerraEvent } from '@subql/types-terra';
+import { MsgExecuteContract } from '@terra-money/terra.js';
 
 const checkRequest = (
   event: TerraEvent<MsgExecuteContract>,
@@ -8,7 +8,7 @@ const checkRequest = (
 ) => {
   if (
     event.event.attributes[0].value ==
-      "terra1zp04qw3v3vehgnrczmgd3t3x6tcktprcwyjhgk3xvsj7mh2xdkdqr9d8uz" &&
+      'terra1zp04qw3v3vehgnrczmgd3t3x6tcktprcwyjhgk3xvsj7mh2xdkdqr9d8uz' &&
     event.event.attributes[1].value == action
   ) {
     return true;
@@ -19,7 +19,7 @@ const checkRequest = (
 export async function handleCreateRequestEvent(
   event: TerraEvent<MsgExecuteContract>
 ): Promise<void> {
-  if (!checkRequest(event, "create_request")) {
+  if (!checkRequest(event, 'create_request')) {
     return;
   }
 
@@ -47,10 +47,10 @@ export async function handleCreateRequestEvent(
     target,
     msg,
     assets: asset.slice(11, -1),
-    executor: "",
-    status: "created",
+    executor: '',
+    status: 'created',
     createdAt: event.block.block.block.header.time,
-    executedOrCancelledAt: "",
+    executedOrCancelledAt: '',
   });
 
   await request.save();
@@ -59,7 +59,7 @@ export async function handleCreateRequestEvent(
 export async function handleExecuteRequestEvent(
   event: TerraEvent<MsgExecuteContract>
 ): Promise<void> {
-  if (!checkRequest(event, "execute_request")) {
+  if (!checkRequest(event, 'execute_request')) {
     return;
   }
 
@@ -74,7 +74,7 @@ export async function handleExecuteRequestEvent(
 
   request.executor =
     event.msg.tx.tx.tx.auth_info.signer_infos[0].public_key.address();
-  request.status = "executed";
+  request.status = 'executed';
   request.executedOrCancelledAt = event.block.block.block.header.time;
 
   await request.save();
@@ -83,7 +83,7 @@ export async function handleExecuteRequestEvent(
 export async function handleCancelRequestEvent(
   event: TerraEvent<MsgExecuteContract>
 ): Promise<void> {
-  if (!checkRequest(event, "cancel_request")) {
+  if (!checkRequest(event, 'cancel_request')) {
     return;
   }
 
@@ -96,7 +96,7 @@ export async function handleCancelRequestEvent(
     return;
   }
 
-  request.status = "cancelled";
+  request.status = 'cancelled';
   request.executedOrCancelledAt = event.block.block.block.header.time;
 
   await request.save();

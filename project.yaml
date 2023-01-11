@@ -22,7 +22,7 @@ network:
   # When developing your project we suggest getting a private API key
   # You can get them from OnFinality for free https://app.onfinality.io
   # https://documentation.onfinality.io/support/the-enhanced-api-service
-  endpoint: http://ec2-52-221-211-166.ap-southeast-1.compute.amazonaws.com:1317
+  endpoint: terra-mainnet.infra.autonomynetwork.io:1317
   # Optionally provide the HTTP endpoint of a full chain dictionary to speed up processing
   # dictionary: https://api.subquery.network/sq/subquery/terra-juno-dictionary
 
@@ -38,19 +38,19 @@ dataSources:
           filter:
             type: wasm
             attributes:
-              _contract_address: "terra1zp04qw3v3vehgnrczmgd3t3x6tcktprcwyjhgk3xvsj7mh2xdkdqr9d8uz"
+              _contract_address: "terra1za5a509w6jvahlcwepnyfzxlwd3wm4lvpmua4w32ypn2we3gjajq5hfkdv"
               action: "create_request"
         - handler: handleExecuteRequestEvent
           kind: terra/EventHandler
           filter:
             type: wasm
             attributes:
-              _contract_address: "terra1zp04qw3v3vehgnrczmgd3t3x6tcktprcwyjhgk3xvsj7mh2xdkdqr9d8uz"
+              _contract_address: "terra1za5a509w6jvahlcwepnyfzxlwd3wm4lvpmua4w32ypn2we3gjajq5hfkdv"
               action: "execute_request"
         - handler: handleCancelRequestEvent
           kind: terra/EventHandler
           filter:
             type: wasm
             attributes:
-              _contract_address: "terra1zp04qw3v3vehgnrczmgd3t3x6tcktprcwyjhgk3xvsj7mh2xdkdqr9d8uz"
+              _contract_address: "terra1za5a509w6jvahlcwepnyfzxlwd3wm4lvpmua4w32ypn2we3gjajq5hfkdv"
               action: "cancel_request"
