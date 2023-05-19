@@ -8,7 +8,7 @@ const checkRequest = (
 ) => {
   if (
     event.event.attributes[0].value ==
-      "terra1zp04qw3v3vehgnrczmgd3t3x6tcktprcwyjhgk3xvsj7mh2xdkdqr9d8uz" &&
+      "terra1za5a509w6jvahlcwepnyfzxlwd3wm4lvpmua4w32ypn2we3gjajq5hfkdv" &&
     event.event.attributes[1].value == action
   ) {
     return true;
